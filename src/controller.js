@@ -9,7 +9,7 @@ const getPairsOfPlayers = async (req = request, resp = response, next) => {
 
   let rspta= [];
 
-  let numAmigos = listaAmigos.amigos.length+1;
+  let numAmigos = listaAmigos.length+1;
   
   
   const { playsData } = await axios(
@@ -18,12 +18,12 @@ const getPairsOfPlayers = async (req = request, resp = response, next) => {
 
   const plays = playsData.plays;
   //Filtra el arreglo para quitar los repetidos
-  let arregloNoRepetido = plays.reproducciones.filter((item, index)=>{
-    return plays.reproducciones.indexOf(item) ===index;
+  let arregloNoRepetido = plays.filter((item, index)=>{
+    return plays.indexOf(item) ===index;
   })
 
   //Saca el numero de plays que hay
-  let numeroDePlays = plays.reproducciones.length + 1;
+  let numeroDePlays = plays.length + 1;
   let uri=  `/users/${req.query.input} `
 
   rspta.push({
